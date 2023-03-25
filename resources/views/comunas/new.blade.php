@@ -11,7 +11,13 @@
 
 <body>
   <div class="container">
+    <div class="p-3 d-flex justify-content-center" style="margin-top: 10%">
+      <div class="card">
+    <div class="card-header">
     <h1>Add comuna</h1>  
+  </div>
+
+  <div class="card-body">
     <form method="POST" action="{{route('comunas.store')}}">
      @csrf
         <div class="mb-3">
@@ -40,6 +46,9 @@
        <a href="{{route('comunas.index')}}" class="btn btn-warning">Close</a>
         </div>
       </form>
+    </div>
+  </div>
+</div>
 </div>
 </body>
 

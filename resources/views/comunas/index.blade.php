@@ -12,15 +12,20 @@
 <body>
 
     <div class="container">
-        <h1 class="h1">Listado de Comunas</h1>
-         <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
-        <table class="table">
+      <div class="p-3 d-flex justify-content-center">
+      <div class="card w-75">
+        <div class="card-header">
+        <h1 class="h1 text-center fw-light">Listado de Comunas</h1>
+      </div>
+      <div class="card-body">
+         <a href="{{ route('comunas.create') }}" class="btn btn-success mb-3">Add</a>
+        <table class="table table table-bordered">
             <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+              <tr class="text-center" style="background-color: aqua">
+                <th scope="col">Id</th>
+                <th scope="col">Commune</th>
+                <th scope="col">municipality</th>
+                <th scope="col">options</th>
               </tr>
             </thead>
             <tbody>
@@ -28,10 +33,10 @@
                 @foreach ($comunas as $comuna)
                     
                 <tr>
-                    <th scope="row">{{  $comuna->comu_codi }}</th>
-                    <td>{{ $comuna->comu_nomb }}</td>
-                    <td>{{ $comuna->muni_nomb }}</td>
-                    <td>
+                    <th class="text-center" scope="row">{{  $comuna->comu_codi }}</th>
+                    <td class="text-center">{{ $comuna->comu_nomb }}</td>
+                    <td class="text-center">{{ $comuna->muni_nomb }}</td>
+                    <td class="text-center">
 
                       <a href="{{ route('comunas.edit',['comuna'=>$comuna->comu_codi]) }}" class="btn btn-info">Edit</a>
 
@@ -47,8 +52,9 @@
 
             </tbody>
           </table>
-
-    
+        </div>
+        </div>
+      </div>
   </div>
 
 </body>

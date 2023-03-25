@@ -11,7 +11,12 @@
 
 <body>
     <div class="container">
+      <div class="p-3 d-flex justify-content-center" style="margin-top: 10%">
+        <div class="card">
+          <div class="card-header">
         <h1>Edit commune</h1>  
+      </div>
+<div class="card-body">
         <form method="POST" action="{{route('comunas.update', ['comuna'=>$comuna->comu_codi])}}">
           @method('put')
           @csrf
@@ -42,9 +47,12 @@
          </select>
             <div class="mt-3">
            <button type="submit" class="btn btn-primary">update</button>
-           <a href="{{route('comunas.index')}}" class="btn btn-warning">cancel</a>
+           <a href="{{route('comunas.index')}}" class="btn btn-warning">Close</a>
             </div>
           </form>
+        </div>
+        </div>
+        </div>      
     </div>
 </body>
 
