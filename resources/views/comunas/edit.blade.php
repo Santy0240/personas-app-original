@@ -10,41 +10,42 @@
 </head>
 
 <body>
-    <div class="card">
+    <div class="container">
+        <h1>Edit commune</h1>  
+        <form method="POST" action="{{route('comunas.update', ['comuna'=>$comuna->comu_codi])}}">
+          @method('put')
+          @csrf
+            <div class="mb-3">
+              <label for="codigo" class="form-label">Id</label>
+              <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id" 
+                   disabled="disabled" values="{{$comuna->comu_codi}}">
+              <div id="codigoHelp" class="form-text">Commune Id</div>
+            </div>
 
-        <div class="card-header">
-<div class="container">
-    <h1 class="h1">Add Comuna</h1>
-</div>
-</div>
 
-<div class="card-body">
-<form method="POST" action="{{ route('comunas.update', ['comuna'=>$comuna->comu_codi]) }}">
-    @method('put')
-    <div class="mb-3">
-      <label for="codigo" class="form-label">code</label>
-      <input type="text" class="form-control" id="codigo" aria-describedby="codigoHelp" disabled value="{{ $comuna->comu_codi }}">
-      <div id="codigoHelp" class="form-text">Commune Id.</div>
+            <div class="mb-3">
+              <label for="name" class="form-label">Commune</label>
+              <input type="text" required class="form-control" id="name" placeholder="Commune name"
+                name="name" value="{{$comuna->comu_nomb}}">
+            </div>
+
+        <label for="municipality">municipality</label>
+        <select class="form-select" id="municipality" name="code" required>
+            <option selected disabled value="">Choose one...</option>
+            @foreach ($municipios as $municipio)
+               @if ($municipio->muni_codi == $comuna->muni_codi)
+                   <option selected value="{{$municipio->muni_codi}}">{{$municipio->muni_nomb}}</option>
+              @else
+                    <option value="{{$municipio->muni_codi}}">{{$municipio->muni_nomb}}</option>
+              @endif
+            @endforeach
+         </select>
+            <div class="mt-3">
+           <button type="submit" class="btn btn-primary">update</button>
+           <a href="{{route('comunas.index')}}" class="btn btn-warning">cancel</a>
+            </div>
+          </form>
     </div>
-    <div class="mb-3">
-      <label for="name" class="form-label">Commune</label>
-      <input type="text" required class="form-control" id="name" aria-describedby="nameHelp" placeholder="Comuna name." value="{{ $comuna->comu_nomb }}">
-    </div>
-    <div class="mb-3">
-        <select class="form-select" id="municipaly" name="code" aria-label="Default select example">
-          <option selected>Choose one...</option>
-    @if ($municipio->muni_codi == $comuna->muni_codi)
-        <option selected value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
-    @else
-        <option selected value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
-    @endif
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="{{ route('comunas.index') }}" class="btn btn-warning">Cancel</a>
-  </form>
-</div>
-</div>
 </body>
 
 {{-- bootstrap.bundle.min.js --}}

@@ -33,7 +33,7 @@ class ComunaController extends Controller
         $municipios = DB::table('tb_municipio')
         ->orderBy('muni_nomb')
         ->get();
-        return view('comunas.new', ['municipios' => $municipios]);
+        return view('comunas.new', ['municipios'=>$municipios]);
     }
 
     /**
@@ -45,16 +45,15 @@ class ComunaController extends Controller
     public function store(Request $request)
     {
         $comuna = new Comuna();
-        $comuna->comu_nomb = $request->name;
-        $comuna->muni_code = $request->code;
-        $comuna->save();
+       $comuna->comu_nomb=$request->name;
+       $comuna->muni_codi=$request->code;   
+       $comuna->save();
 
-        $comunas = DB::table('tb_comuna')
-        ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
-        ->select('tb_comuna.*', 'tb_municipio.muni_nomb')
-        ->get();
-
-        return view('comunas.index', ['comunas' => $comunas]);
+       $comunas = DB::table('tb_comuna')
+       ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
+       ->select('tb_comuna.*',"tb_municipio.muni_nomb")
+       ->get();
+       return view('comunas.index', ['comunas' => $comunas]);
     }
 
     /**
@@ -76,11 +75,11 @@ class ComunaController extends Controller
      */
     public function edit($id)
     {
-        $comuna = Comuna::find($id);
-        $municipios = DB::table('tb_municipio')
+        $comuna=Comuna::find($id);
+        $municipios=DB::table('tb_municipio')
         ->orderBy('muni_nomb')
         ->get();
-        return view('comunas.edit', ['comunas' => $comuna, 'municipios' => $municipios]);
+        return view('comunas.edit',['comuna' => $comuna, 'municipios' => $municipios]);
     }
 
     /**
@@ -95,15 +94,15 @@ class ComunaController extends Controller
         $comuna = Comuna::find($id);
 
         $comuna->comu_nomb = $request->name;
-        $comuna->comu_codi = $request->code;
+        $comuna->muni_codi = $request->code;
         $comuna->save();
 
         $comunas = DB::table('tb_comuna')
-        ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
-        ->select('tb_comuna.*','tb_municipio.muni_nomb')
+        ->join('tb_municipio', 'tb_comuna.muni_codi', '=' ,'tb_municipio.muni_codi')
+        ->select('tb_comuna.*', "tb_municipio.muni_nomb")
         ->get();
 
-        return view('comunas.index', ['comunas' => $comunas]);
+        return view('comunas.index',['comunas' => $comunas]);
 
     }
 
